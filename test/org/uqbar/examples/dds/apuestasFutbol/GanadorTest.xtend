@@ -4,15 +4,15 @@ import org.junit.Test
 
 import static org.junit.Assert.*
 
-class ApuestasTest {
+class GanadorTest {
 	@Test
-	def void testResultadoExacto() {
+	def void testGanador() {
 		val partido = new Partido("Argentina", "Uruguay")
 		val nico = new Apostador()
 		val pepe = new Apostador()
 
-		partido.apuestas += new ResultadoExacto(nico, 10, #{"Argentina" -> 1, "Uruguay" -> 1})
-		partido.apuestas += new ResultadoExacto(pepe, 20, #{"Argentina" -> 1, "Uruguay" -> 0})
+		partido.apuestas += new Ganador(nico, 10, "Argentina")
+		partido.apuestas += new Ganador(pepe, 20, "Uruguay")
 
 		// saldosIniciales
 		assertEquals(100, nico.saldo)
