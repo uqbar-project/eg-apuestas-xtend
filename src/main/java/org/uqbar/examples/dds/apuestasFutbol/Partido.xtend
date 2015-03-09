@@ -1,10 +1,12 @@
-package org.uqbar.examples.dds.apuestasFutbol.postRefactor
+package org.uqbar.examples.dds.apuestasFutbol
 
 import java.util.List
 import java.util.Map
+import org.eclipse.xtend.lib.annotations.Accessors
 
+@Accessors
 class Partido {
-	@Property List<Apuesta> apuestas = newArrayList
+	List<Apuesta> apuestas = newArrayList
 	Map<String, List<String>> goles // Mapa de equipo a lista de los jugadores que hicieron los goles
 
 	new(String equipo1, String equipo2) {
@@ -14,26 +16,20 @@ class Partido {
 
 	def gol(String equipo, String jugador) {
 		goles.get(equipo) += jugador // Agrega el jugador a la lista de goles del equipo
-		
-		apuestas.clone.forEach [ apuesta |
-			switch apuesta {
-				ResultadoExacto:
-					if (cantGoles(equipo) > apuesta.cantGoles(equipo)) {
-						apuesta.apostador.pagar(-apuesta.monto)
-						apuestas.remove(apuesta)
-					}
-			}
-		]
 	}
 
 	def finalizar() {
 		apuestas.forEach[ apuesta |
+			var boolean gano
 			switch apuesta {
 				ResultadoExacto: {
-					val gano = equipos.forall[ equipo | cantGoles(equipo) == apuesta.cantGoles(equipo)]
-					apuesta.apostador.pagar(if (gano) apuesta.monto else -apuesta.monto)
+					gano = equipos.forall[ equipo | cantGoles(equipo) == apuesta.cantGoles(equipo)]
+				}
+				Ganador: {
+					gano = cantGoles(apuesta.ganador) > cantGoles(apuesta.perdedor)
 				}
 			}
+			apuesta.apostador.pagar(if (gano) apuesta.monto else -apuesta.monto)
 		]
 	}
 
@@ -44,9 +40,10 @@ class Partido {
 	def equipos() { goles.keySet }
 }
 
+@Accessors
 class Apuesta {
-	@Property Apostador apostador
-	@Property int monto
+	Apostador apostador
+	int monto
 
 	new(Apostador apostador, int monto) {
 		this.apostador = apostador
@@ -67,12 +64,15 @@ class ResultadoExacto extends Apuesta {
 	}
 }
 
+@Accessors
 class Ganador extends Apuesta {
 	String ganador
+	String perdedor
 	
-	new(Apostador apostador, int monto, String ganador) {
+	new(Apostador apostador, int monto, String ganador, String perdedor) {
 		super(apostador, monto)
 		this.ganador = ganador
+		this.perdedor = perdedor
 	}
 }
 
