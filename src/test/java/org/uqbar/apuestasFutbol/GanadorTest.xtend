@@ -1,4 +1,4 @@
-package org.uqbar.examples.dds.apuestasFutbol
+package org.uqbar.apuestasFutbol
 
 import org.junit.Test
 

@@ -1,4 +1,4 @@
-package org.uqbar.examples.dds.apuestasFutbol.postRefactor
+package org.uqbar.apuestasFutbol.postRefactor
 
 import org.junit.Test
 

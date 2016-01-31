@@ -1,4 +1,4 @@
-package org.uqbar.examples.dds.apuestasFutbol.postRefactor
+package org.uqbar.apuestasFutbol
 
 import java.util.List
 import java.util.Map
@@ -16,26 +16,20 @@ class Partido {
 
 	def gol(String equipo, String jugador) {
 		goles.get(equipo) += jugador // Agrega el jugador a la lista de goles del equipo
-		
-		apuestas.clone.forEach [ apuesta |
-			switch apuesta {
-				ResultadoExacto:
-					if (cantGoles(equipo) > apuesta.cantGoles(equipo)) {
-						apuesta.apostador.pagar(-apuesta.monto)
-						apuestas.remove(apuesta)
-					}
-			}
-		]
 	}
 
 	def finalizar() {
 		apuestas.forEach[ apuesta |
+			var boolean gano
 			switch apuesta {
 				ResultadoExacto: {
-					val gano = equipos.forall[ equipo | cantGoles(equipo) == apuesta.cantGoles(equipo)]
-					apuesta.apostador.pagar(if (gano) apuesta.monto else -apuesta.monto)
+					gano = equipos.forall[ equipo | cantGoles(equipo) == apuesta.cantGoles(equipo)]
+				}
+				Ganador: {
+					gano = cantGoles(apuesta.ganador) > cantGoles(apuesta.perdedor)
 				}
 			}
+			apuesta.apostador.pagar(if (gano) apuesta.monto else -apuesta.monto)
 		]
 	}
 
@@ -70,12 +64,15 @@ class ResultadoExacto extends Apuesta {
 	}
 }
 
+@Accessors
 class Ganador extends Apuesta {
 	String ganador
+	String perdedor
 	
-	new(Apostador apostador, int monto, String ganador) {
+	new(Apostador apostador, int monto, String ganador, String perdedor) {
 		super(apostador, monto)
 		this.ganador = ganador
+		this.perdedor = perdedor
 	}
 }
 
