@@ -1,7 +1,7 @@
 
 # Ejercicio de Diseño - Apuestas
 
-![image](images/apuestas.jpg) 
+<img src="images/apuestas.jpg" width="140px" height="140px"/>
 
 ## Dominio
 
