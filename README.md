@@ -1,5 +1,5 @@
 
-# Ejercicio de Diseño - Vehículos
+# Ejercicio de Diseño - Apuestas
 
 ![image](images/apuestas.jpg) 
 
@@ -11,6 +11,11 @@ Queremos modelar apuestas de un partido
 * por ganador
 
 ambas subclasifican la apuesta que tiene por defecto un monto y un apostador.
+
+## Versiones
+
+* la **inicial**: está en el package org.uqbar.apuestasFutbol
+* la **refactorizada**: está en el package org.uqbar.apuestasFutbol.postRefactor
 
 ## Conceptos a ver
 
