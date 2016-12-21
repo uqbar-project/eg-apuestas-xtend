@@ -3,7 +3,7 @@
 
 [![Build Status](https://travis-ci.org/uqbar-project/eg-apuestas-xtend.svg?branch=master)](https://travis-ci.org/uqbar-project/eg-apuestas-xtend) [![Coverage Status](https://coveralls.io/repos/github/uqbar-project/eg-apuestas-xtend/badge.svg?branch=master)](https://coveralls.io/github/uqbar-project/eg-apuestas-xtend?branch=master)
 
-<img src="images/apuestas.jpg" width="60%" height="60%"/>
+<img src="images/apuestas.jpg" width="177" height="118"/>
 
 ## Dominio
 
