@@ -5,13 +5,4 @@ jdk:
 script:
   - mvn -e -DTRAVIS_JOB_ID=$TRAVIS_JOB_ID clean install jacoco:report coveralls:report
 
-after_success:
-  - bash <(curl -s https://codecov.io/bash)
 
-notifications:
-  email:
-    recipients:
-      - fernando.dodino@gmail.com
-      - grisoliarodrigo@gmail.com
-    on_success: [change] # default: change | [always|never|change]
-    on_failure: [always] # default: always | [always|never|change]
