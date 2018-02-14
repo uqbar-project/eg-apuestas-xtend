@@ -1,7 +1,7 @@
 
 # Ejercicio de Diseño - Apuestas
 
-[![Build Status](https://travis-ci.org/uqbar-project/eg-apuestas-xtend.svg?branch=master)](https://travis-ci.org/uqbar-project/eg-apuestas-xtend) [![Coverage Status](https://coveralls.io/repos/github/uqbar-project/eg-apuestas-xtend/badge.svg?branch=master)](https://coveralls.io/github/uqbar-project/eg-apuestas-xtend?branch=master)
+[![Build Status](https://travis-ci.org/uqbar-project/eg-apuestas-xtend.svg?branch=master)](https://travis-ci.org/uqbar-project/eg-apuestas-xtend) [![Coverage Status](https://coveralls.io/repos/github/uqbar-project/eg-apuestas-xtend/badge.svg?branch=master&service=github)](https://coveralls.io/github/uqbar-project/eg-apuestas-xtend?branch=master&service=github)
 
 <img src="images/apuestas.jpg" width="213px" height="142px"/>
 
