@@ -80,11 +80,9 @@ class Ganador extends Apuesta {
 }
 
 class Apostador {
-	var saldo = 100
+	@Accessors(PUBLIC_GETTER) var saldo = 100
 
 	def void pagar(int monto) {
 		saldo = saldo + monto
 	}
-	
-	def getSaldo() { saldo }
 }

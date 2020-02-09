@@ -3,6 +3,7 @@ package org.uqbar.apuestasFutbol
 import java.util.List
 import java.util.Map
 import org.eclipse.xtend.lib.annotations.Accessors
+import org.eclipse.xtend.lib.annotations.Data
 
 @Accessors
 class Partido {
@@ -40,15 +41,10 @@ class Partido {
 	def equipos() { goles.keySet }
 }
 
-@Accessors
+@Data
 class Apuesta {
 	Apostador apostador
 	int monto
-
-	new(Apostador apostador, int monto) {
-		this.apostador = apostador
-		this.monto = monto
-	}
 }
 
 class ResultadoExacto extends Apuesta {
@@ -77,11 +73,10 @@ class Ganador extends Apuesta {
 }
 
 class Apostador {
-	var saldo = 100
+	@Accessors(PUBLIC_GETTER) var saldo = 100
 
 	def void pagar(int monto) {
 		saldo = saldo + monto
 	}
 	
-	def getSaldo() { saldo }
 }
